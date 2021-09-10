@@ -2,6 +2,21 @@ import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { Vector3 } from 'three';
+
+const loader = new GLTFLoader();
+
+loader.load( '/textures/frog.glb', function ( gltf ) {
+
+	scene.add( gltf.scene );
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+
 
 const textureLoader = new THREE.TextureLoader()
 
@@ -10,7 +25,7 @@ const normalTexture2 = textureLoader.load('/textures/texture2.png')
 
 
 // Debug
-const gui = new dat.GUI()
+// const gui = new dat.GUI()
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -20,7 +35,7 @@ const scene = new THREE.Scene()
 
 // Objects
 
-const geometry = new THREE.SphereGeometry( .5,42, 46 );
+const geometry = new THREE.SphereGeometry( 1,42, 46 );
 
 // Materials
  
@@ -53,8 +68,82 @@ const pointLight4 = new THREE.PointLight(0x00ff00, 4)
 pointLight4.position.set(0,1,1)
 scene.add(pointLight4)
 
-gui.add(pointLight4.position , 'y')
-gui.add(pointLight4, 'intensity')
+// const whitelight = gui.addFolder('White light')
+
+// whitelight.add(pointLight.position , 'x')
+// whitelight.add(pointLight.position , 'y')
+// whitelight.add(pointLight.position , 'z')
+// whitelight.add(pointLight, 'intensity')
+
+// const whitelightclr = {
+//     color:0xffffff
+// }
+
+// whitelight.addColor(whitelightclr,'color').onChange(()=>{
+//     pointLight.color.set(whitelightclr.color)
+// })
+
+
+// const redlight = gui.addFolder('Red light')
+
+
+// redlight.add(pointLight2.position , 'x')
+// redlight.add(pointLight2.position , 'y')
+// redlight.add(pointLight2.position , 'z')
+// redlight.add(pointLight2, 'intensity')
+
+// const redlightclr = {
+//     color:0xff0000
+// }
+
+// redlight.addColor(redlightclr,'color').onChange(()=>{
+//     pointLight2.color.set(redlightclr.color)
+// })
+
+// const bluelight = gui.addFolder('Blue light')
+
+// bluelight.add(pointLight3.position , 'x')
+// bluelight.add(pointLight3.position , 'y')
+// bluelight.add(pointLight3.position , 'z')
+// bluelight.add(pointLight3, 'intensity')
+
+// const bluelightclr = {
+//     color:0x0000ff
+// }
+
+// bluelight.addColor(bluelightclr,'color').onChange(()=>{
+//     pointLight3.color.set(bluelightclr.color)
+// })
+
+// const greenlight = gui.addFolder('Green light')
+
+
+// greenlight.add(pointLight4.position , 'x')
+// greenlight.add(pointLight4.position , 'y')
+// greenlight.add(pointLight4.position , 'z')
+// greenlight.add(pointLight4, 'intensity')
+
+// const greenlightclr = {
+//     color:0x00ff00
+// }
+
+// greenlight.addColor(greenlightclr,'color').onChange(()=>{
+//     pointLight4.color.set(greenlightclr.color)
+// })
+
+
+// const lighthelper4 = new THREE.PointLightHelper(pointLight4 , .1)
+// scene.add(lighthelper4)
+
+// const lighthelper3 = new THREE.PointLightHelper(pointLight3 , .1)
+// scene.add(lighthelper3)
+
+// const lighthelper2 = new THREE.PointLightHelper(pointLight2 , .1)
+// scene.add(lighthelper2)
+
+// const lighthelper = new THREE.PointLightHelper(pointLight , .1)
+// scene.add(lighthelper)
+
 /**
  * Sizes
  */
@@ -97,7 +186,7 @@ scene.add(camera)
  */
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
-    alpha:false
+    alpha:false 
 })
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
@@ -106,17 +195,41 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
  * Animate
  */
 
+
+var mouseX = 0;
+var mouseY = 0;
+
+var targetX = 0;
+var targetY = 0;
+
+const onMouseMove = (event) =>{
+    mouseX = (event.clientX - (window.innerWidth / 2))
+    mouseY = (event.clientX - (window.innerHeight / 2))
+}
+const updateSphear = (event) =>{
+    console.log("scrolled = " + window.scrollY);
+    sphere.position.z = window.scrollY * .001
+} 
+
+document.addEventListener('mousemove' , onMouseMove)
+document.addEventListener('scroll' , updateSphear)
+
+
 const clock = new THREE.Clock()
 
 const tick = () =>
 {
-
+    targetX = mouseX * .001
+    targetY = mouseY * .001
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
     sphere.rotation.y = .5 * elapsedTime
-    sphere.rotation.x = .5 * elapsedTime
+    // sphere.rotation.x = .5 * elapsedTime
 
+    sphere.rotation.y += .5 * (targetX - sphere.rotation.y)
+    sphere.rotation.x += .5 * (targetY - sphere.rotation.x)
+    sphere.rotation.z += -.5 * (targetY - sphere.rotation.x)
     // Update Orbital Controls
     // controls.update()
 

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 *
 {
     margin: 0;
@@ -9,17 +11,30 @@ body
 {
     height: 100vh;
     font-family: 'Poppins';
-    background-color: rgba(129, 127, 125, 0.5);
+    background-color: rgb(0, 0, 0);
+}
+body::-webkit-scrollbar{
+    display: none;
 }
 
 .webgl
 {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     outline: none;
+    z-index: 100;
+    mix-blend-mode: exclusion ;
 }
 .heading{
     color: white;
-    z-index: 100;
+    z-index: -100;
+    text-align: center;
+    padding-top: 320px;
+    font-size: 100px;
+    font-family: 'Bebas Neue', cursive;
+
+}
+section{
+    height: 200vh;
 }

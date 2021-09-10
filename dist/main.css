@@ -1,0 +1,27 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body
+{
+    height: 100vh;
+    font-family: 'Poppins';
+    background-color: rgba(129, 127, 125, 0.5);
+}
+
+.webgl
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+.heading{
+    color: white;
+    z-index: 100;
+}
+
+/*# sourceMappingURL=main.css.map*/
