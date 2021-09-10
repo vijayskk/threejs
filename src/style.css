@@ -173,8 +173,8 @@ section{
     .chart{
         width: 100vw;
         height: 50vh;
-        position: relative;
-        left: 50%;
+        position: absolute;
+        left: 30%;
         transform: translate(-50%,0%);
     }
 }
