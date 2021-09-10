@@ -172,9 +172,10 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+sphere.position.set(0,0,-2)
 camera.position.x = 0
 camera.position.y = 0
-camera.position.z = 2
+camera.position.z = 0
 scene.add(camera)
 
 // Controls
@@ -208,7 +209,7 @@ const onMouseMove = (event) =>{
 }
 const updateSphear = (event) =>{
     console.log("scrolled = " + window.scrollY);
-    sphere.position.z = window.scrollY * .001
+    camera.position.z = window.scrollY * -.001
 } 
 
 document.addEventListener('mousemove' , onMouseMove)
