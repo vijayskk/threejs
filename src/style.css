@@ -171,10 +171,21 @@ section{
     
     }
     .chart{
-        width: 100vw;
+        width: 100px;
         height: 50vh;
-        position: absolute;
-        left: 30%;
-        transform: translate(-50%,0%);
+        position: relative;
+        margin-left: -100px;
     }
+    .downarrow{
+        display: none;
+    }
+}
+
+.downarrow{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }

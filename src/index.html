@@ -2,38 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=500; user-scalable=0;" />
     <title>I am Vijay Satheesh</title>
-    <script>
-        // Create the observer
-        const observer = new IntersectionObserver(entries => {
-        // We will fill in the callback later...
-        });
 
-        // Tell the observer which elements to track
-        observer.observe(document.querySelector('.graphs'));
-        entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // It's visible. Add the animation class here!
-        }
-        });
-        const observer = new IntersectionObserver(entries => {
-        // Loop over the entries
-        entries.forEach(entry => {
-        // If the element is visible
-        if (entry.isIntersecting) {
-        // Add the animation class
-        entry.target.classList.add('graphs-animation');
-    }
-  });
-});
-
-observer.observe(document.querySelector('.graphs'));
-    </script>
 </head>
 <body>
     <div class="container">
         <h1 class="heading">I am Vijay Satheesh</h1>
+        <svg xmlns="http://www.w3.org/2000/svg" class="downarrow" fill="white" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
     </div>
     <canvas class="webgl"></canvas>
     <section>

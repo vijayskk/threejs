@@ -38,7 +38,7 @@ const scene = new THREE.Scene()
 
 // Objects
 
-const geometry = new THREE.SphereGeometry( 1,42, 46 );
+const geometry = new THREE.SphereGeometry( 1,20, 26 );
 const imagecube = new THREE.BoxGeometry( 2, 2, 2 );
 
 // Materials
